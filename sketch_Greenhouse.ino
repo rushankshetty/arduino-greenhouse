@@ -1,12 +1,12 @@
 #include "DHT.h"
 
-#define DHTPIN 2     // what pin we're connected the DHT11 to
+#define DHTPIN 2           // what pin we're connected the DHT11 to
 
-#define DHTTYPE DHT11   // DHT 11 
+#define DHTTYPE DHT11      // DHT 11 
 
-#define FANPIN1 8        // what pin we've connected the FAN to
+#define FANPIN1 8          // what pin we've connected the FAN to
 
-#define FANPIN2 9        // what pin we've connected the FAN to
+#define FANPIN2 9          // what pin we've connected the FAN to
 
 #define MOISTURESENSOR A0  // what pin we've connected the SOIL MOISTURE SENSOR to
 
@@ -60,7 +60,7 @@ void loop() {
   }
   else {
   // Compute heat index
-  // Must send in temp in Fahrenheit!
+  // Must send in temperature in Fahrenheit!
   float hi = dht.computeHeatIndex(f, h);
 
   Serial.print("Humidity: "); 
@@ -79,9 +79,11 @@ void loop() {
   Serial.println(" *F");
   
   if(t > 29.0) {
+	// Start the fan for cooling
      digitalWrite(FANPIN1, HIGH);
   }
   else {
+	// Else don't
     digitalWrite(FANPIN1, LOW);
   }
   
